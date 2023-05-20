@@ -1,0 +1,95 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %} Hexagrama {{ hexagrama.numero }} {% endblock %}
+{% block 'styles' %}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">{% endblock %}
+{% block 'scripts' %}<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> {% endblock %}
+
+
+{% block 'content' %}
+
+{% include 'iching/partials/navbar.html' %}
+
+    <div class="grid-container">
+        <div class="item1">
+            <br>
+            <br>
+            <br>
+            <h2>Hexagrama n° {{ hexa.numero }} </h2>
+            <br>
+            <p class="l6 lih"> {{dibujohexa.5}} </p>
+            <p class="l5 lih"> {{dibujohexa.4}} </p>
+            <p class="l4 lih"> {{dibujohexa.3}} </p>
+            <p class="l3 lih"> {{dibujohexa.2}} </p>
+            <p class="l2 lih"> {{dibujohexa.1}} </p>
+            <p class="l1 lih"> {{dibujohexa.0}} </p>
+        </div>
+
+            <br>
+            <br>
+
+        <div class="item2">
+            {% if hexa.simbolo %}
+            <h2> {{hexa.simbolo}} </h2>
+            {% endif %}
+            <h2> {{hexa.nombre}} </h2>
+            <br>
+            <p> {{hexa.texto}} </p>
+        </div>
+
+        <div class="item3">
+            <h1>,</h1>
+            <br>
+            <br>
+
+            <h4>Lineas</h4>
+            <br>
+            <ul>
+                <li id="mutable">x <b>Cuando muta la primera linea:</b> {{hexa.m1}}</li>
+                <br>
+                <li id="mutable">x  <b>Cuando muta la segunda linea:</b> {{hexa.m2}}</li>
+                <br>
+                <li id="mutable">x  <b>Cuando muta la tercera linea:</b> {{hexa.m3}}</li>
+                <br>
+                <li id="mutable">x  <b> Cuando muta la cuarta linea:</b> {{hexa.m4}}</li>
+                <br>
+                <li id="mutable">x  <b>Cuando muta la quinta linea:</b> {{hexa.m5}}</li>
+                <br>
+                <li id="mutable">x  <b>Cuando muta la sexta linea:</b> {{hexa.m6}}</li>
+                <br>
+                {% if hexa.texto_especial %}
+                    <li id="mutable">x Cuando mutan todas: {{ hexa.texto_especial }}
+                {%endif%}
+            <br>
+            </ul>
+        </div>
+
+        {% if hexa.mas_info %}
+            <div class="item3">
+                <h1>,</h1>
+                        <br>
+                        <br>
+
+                <div class="row">
+
+                    <div class="col">
+                        <h3> Textos originales </h3>
+                    </div>
+
+                    <div class="col">
+                        <a class="btn btn-outline-dark btn-lg" href="{{hexa.mas_info}}" target="_blank" role="button">  Archivo PDF </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <a>(Wilhelm , Ritsema y más)</a>
+                </div>
+
+                <br>
+            </div>
+
+        <br>
+        <br>
+        {% endif %}
+
+     </div>
+    {% endblock %}

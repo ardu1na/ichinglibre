@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %} Ayuda {% endblock %}
+
+{% block 'styles' %}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">{% endblock %}
+{% block 'scripts' %}<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> {% endblock %}
+
+
+{% block 'content' %}
+
+    {% include 'iching/partials/navbar.html' %}
+
+    <div class="grid-container">
+          <div class="item5" id="ayuda">
+             <h1>Ayuda</h1>
+             <br>
+             <p>Las respuestas que otorga el I-Ching mediante los 64 hexagramas representan arquetipos, fotografías, descripciones de situaciones.</p>
+             <br><br>
+             <h1>,</h1>
+             <br>
+             <h2>Cómo preguntar</h2>
+             <br>
+             <p>Como con la mayoría de los oráculos, evita preguntar sobre otras personas, o consultas de 'si' o 'no'.</p>
+             <p>En su lugar, es mejor preguntar comenzando por un constructor: 'por qué, cómo, cuál'.</p>
+             <br>
+             <h1>,</h1>
+             <br>
+
+             <h3>Ideas para preguntas</h3>
+             <p> El estado general de una situación </p>
+             <p> Elementos ocultos de una situación</p>
+             <p> Consejo para determinada situación</p>
+             <p> Hacia dónde se dirige la situación</p>
+             <br>
+             <br>
+             <h1>,</h1>
+             <br>
+             <br>
+
+             <h2>Lineas mutables</h2>
+                <p> Las líneas mutables añaden información adicional al resultado
+                y producen un hexagrama secundario.</p>
+                <p> Si no muta ninguna linea, no habrá hexagrama secundario.</p>
+            <br>
+            <br>
+        </div>
+    </div>
+{% endblock %}

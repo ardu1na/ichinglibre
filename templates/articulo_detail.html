@@ -1,0 +1,32 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %} {{articulo.titulo}} {% endblock %}
+{% block 'styles' %}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css
+">{% endblock %}
+{% block 'scripts' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
+"></script> {% endblock %}
+{% block 'content' %}
+{% include 'iching/partials/navbar.html' %}
+
+<div class="container">
+    <div class="item5" id="blog">
+
+        <br>
+        <br>
+        <br>
+        <h1><></h1>
+        <br>
+        <h2>{{articulo.titulo}}</h2>
+        <br>
+            <div class="tiny">
+            {{articulo.texto|safe}}
+            </div>
+            <br>
+            <br>
+        <br>
+        <br>
+
+    </div>
+</div>
+{% endblock %}

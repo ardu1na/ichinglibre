@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %} Contacto {% endblock %}
+{% block 'styles' %}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">{% endblock %}
+{% block 'scripts' %}<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> {% endblock %}
+
+{% block 'content' %}
+{% include 'iching/partials/navbar.html' %}
+
+<div class="grid-container">
+    <div class="item5" id="ayuda">
+        <br>
+        <h1><></h1>
+        <br>
+        <h2>Contacto</h2>
+        <br>
+            <p>Telegram: <a href="https://t.me/Canyoutellmethetrue"> @Canyoutellmethetrue </a></p>
+            <br>
+            <br>
+            <p> Instagram: <a href="https://instagram.com/mercedesrasemer">@mercedesrasemer </a></p>
+        <br>
+        <br>
+        <h1><></h1>
+        <br>
+
+        <br>
+            <p>I-Ching Libre comenzó en agosto del 2022 mientras aprendía a programar. Es una web app liviana hecha en Python, con Django y Bootstrap. </p>
+            <p>Agradezco a todos los desarrolladores y personas que comparten su saber de forma gratuita online y a mi abuela Yaya por introducirme a otras búsquedas. </p>
+        <br
+        <br>
+        <h1><></h1>
+        <br>
+        <p>  El sitio web se encuentra aún en construcción. Está alojado en un servidor gratuito de prueba (por lo que muchas veces se satura y da server error 505) y aún no tiene dominio propio.</p>
+        <p>Muchos de los textos son provisionales y el formateo aún no me convence. Cuando tengo tiempo libre trato de actualizar las lecturas de la los textos y las líneas de los hexagramas.</p>
+
+        <br>
+        <h1><></h1>
+        <br>
+
+        <p>  La idea es ofrecer una interpretación actualizada, como puerta de apertura, y difundir al público general el legado del I Ching.</p>
+        <p> Los algoritmos se encargan de realizar la tirada y proporcionar el resultado, pero a su vez <a href="{% url 'form' %}"> puedes encontrar los textos antiguos y traducciones
+        de varios autores para cada hexagrama</a>.</p>
+
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %} Articulos {% endblock %}
+{% block 'styles' %}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css
+">{% endblock %}
+{% block 'scripts' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
+"></script> {% endblock %}
+{% block 'content' %}
+{% include 'iching/partials/navbar.html' %}
+
+<div class="container">
+    <div class="item5" id="blog">
+
+        {% for articulo in articulos %}
+        <br>
+        <br>
+        <br>
+        <h1><></h1>
+        <br>
+        <h2 >{{articulo.titulo}}</h2>
+
+        <br>
+            <div class="tiny">
+            {{articulo.descripcion|safe}}
+            </div>
+            <br>
+            <br>
+        <br>
+        <a href="{{ articulo.get_absolute_url }}" class="btn btn-dark px-3">Ver</a>
+        <br>
+        {% endfor %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; previous</a>
+                {% endif %}
+                
+                {% if page_obj.has_next %}
+
+                <span class="current-page">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                    <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+{% endblock %}

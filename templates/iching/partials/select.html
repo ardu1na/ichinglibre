@@ -1,0 +1,9 @@
+
+<form action="{% url 'hexagrama' %}"  method='GET'>
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="busqueda">
+        <option value="1" selected>Selecciona un hexagrama...</option>
+            {%for h in hexagramas%}
+                <option value="{{h.numero}}">{{h.numero}} - {{h.nombre}}</option>
+            {%endfor%}
+    </select><span><input type="submit" class="btn btn-outline-dark btn-lg"></span>
+</form>
