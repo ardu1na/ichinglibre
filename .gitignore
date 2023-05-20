@@ -5,3 +5,4 @@ __pycache__/
 iching/settings.py
 db.sqlite3
 migrations/
+static/
