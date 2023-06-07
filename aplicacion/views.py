@@ -27,14 +27,14 @@ def sitemap(request, **kwargs):
 
 
 def blog(request):
-    articulos = Articulo.objects.all()
-    paginator = Paginator(articulos, 10) 
+    articulos = Articulo.objects.all().order_by('-id')
+    paginator = Paginator(articulos, 10)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context= {
-        'articulos' : page_obj,
+        'articulos' : articulos,
     }
     return render(request, 'blog.html', context)
 
@@ -56,7 +56,7 @@ def form(request):
 
 
 # Resultado de la búsqueda
-def hexagrama(request): 
+def hexagrama(request):
     if request.method != 'GET':
         return HttpResponse("Te hackeé")
 
@@ -113,7 +113,7 @@ def tirada(request):
 
 
 
-    
+
     # Gráfico para renderizar
     dibujohexa1=[]
     for linea in tirada:
@@ -124,10 +124,10 @@ def tirada(request):
         elif linea == 3:
             dibujohexa1.append(myang)
         else:
-            dibujohexa1.append(yang)    
-            
-            
-            
+            dibujohexa1.append(yang)
+
+
+
     # buscar mutables y armar resultado
     mutables = []
     h1 = []
@@ -155,34 +155,34 @@ def tirada(request):
         es_mutable = False
     else:
         es_mutable = True
-        
-        # buscar el segundo hexagrama    
+
+        # buscar el segundo hexagrama
         hexa2 = Hexagrama.objects.get(lineas=h2)
-        
+
         # ver si es primario y mutan todas
         if hexa1.numero == 1 or hexa1.numero == 2 and len(mutables) == 6:
             es_especial = True
         else:
             es_especial = False
-            
-        
-        
-        
+
+
+
+
         dibujohexa2=[]
         for linea in h2:
             if linea == 2:
                 dibujohexa2.append(yin)
             else:
-                dibujohexa2.append(yang) 
-            
-        
+                dibujohexa2.append(yang)
+
+
 
     if es_mutable == False:
         context = {
             'es_mutable': es_mutable,
             'hexa1': hexa1,
             'dibujohexa1': dibujohexa1
-            
+
         }
     else:
         context = {
