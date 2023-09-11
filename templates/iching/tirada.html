@@ -31,7 +31,12 @@
 
                 <h2> {{ hexa1.nombre }} </h2>
                 <p> {{ hexa1.texto }} </p>
-                <a href="{{ hexa1.mas_info }}"> + info </a>
+
+                <br>
+                {% if hexa1.articulo %}<a href="{{ hexa1.articulo.get_absolute_url }}" target="_blank"> Leer más sobre el hexagrama {{hexa1.numero}} </a>   {% endif %}
+      <br>
+
+                <a href="{{ hexa1.mas_info }}"  target="_blank"> PDF Compendiu </a>
 
             </div>
 
@@ -90,8 +95,12 @@
                 <h2>{{ hexa2.simbolo }}</h2>
                 <h2>{{ hexa2.nombre  }} </h2>
                 <p> {{ hexa2.texto }}</p>
-                <a href="{{ hexa2.mas_info }}"> + info </a>
 
+                                <br>
+                                {% if hexa2.articulo %}<a href="{{ hexa2.articulo.get_absolute_url }}  target="_blank""> Leer más sobre el hexagrama {{hexa2.numero}} </a>   {% endif %}
+                                                <br>
+
+                <a href="{{ hexa2.mas_info }}"  target="_blank"> PDF Compendiu </a>
             </div>
         {% endif %}
 

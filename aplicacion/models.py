@@ -46,7 +46,8 @@ class Articulo(models.Model):
     img_url=models.URLField(null=True, blank=True)
     slug=models.SlugField(null=True, blank=True, unique=True)
     tags = models.ManyToManyField(Tag, related_name="articulos", null=True, blank=True)
-    categoría =  models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank= True, related_name="articulos")
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank= True, related_name="articulos")
+    hexagrama = models.OneToOneField(Hexagrama, on_delete=models.SET_NULL, null=True, blank= True, related_name="articulo")
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.titulo)
@@ -54,10 +55,10 @@ class Articulo(models.Model):
 
     def __str__(self):
         return self.titulo
-    
+
     def get_absolute_url(self):
         return reverse('articulo_detail', args=[str(self.slug)])
-    
+
     class Meta:
         get_latest_by = "fecha"
         ordering = ["fecha",]

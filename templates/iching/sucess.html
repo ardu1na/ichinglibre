@@ -63,7 +63,21 @@
             </ul>
         </div>
 
-        {% if hexa.mas_info %}
+
+
+        <br>
+
+        <div class="text-center">
+                    <h1><></h1>
+        <br>
+            <button type="button" class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Consultar al I Ching online
+              </button>
+        </div>
+
+<br>
+
+    {% if hexa.mas_info %}
             <div class="item3">
                 <h1>,</h1>
                         <br>
@@ -76,7 +90,7 @@
                     </div>
 
                     <div class="col">
-                        <a class="btn btn-outline-dark btn-lg" href="{{hexa.mas_info}}" target="_blank" role="button">  Archivo PDF </a>
+                        <a class="btn btn-outline-dark btn-lg" href="{{hexa.mas_info}}" target="_blank" role="button">  PDF Compendiu </a>
                     </div>
                 </div>
 
@@ -87,9 +101,49 @@
                 <br>
             </div>
 
+
         <br>
+    {% endif %}
+
+    {% if hexa.articulo %}
+            <div class="item3">
+                <h1>,</h1>
+                        <br>
+                        <br>
+
+                <div class="row">
+
+                    <div class="col">
+                        <h3> Leer más sobre el hexagrama {{ hexa.numero }} {{ hexa.nombre }}</h3>
+                    </div>
+
+                    <div class="col">
+                        <a class="btn btn-outline-dark btn-lg" href="{{ hexa.articulo.get_absolute_url }}" target="_blank" role="button">  Artículo de I Ching Libre </a>
+                    </div>
+                </div>
+
+                <br>
+            </div>
+
+
         <br>
-        {% endif %}
+    {% endif %}
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="text-center fs-3 p-3">Concéntrate en tu pregunta y toca en consultar para conocer el resultado...</div>
+                      <br>
+                    <div class="text-center py-2 fs-3"><a class="btn btn-outline-dark btn-lg" href="{% url 'tirada' %}" role="button">Consultar</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
      </div>
     {% endblock %}
