@@ -30,27 +30,10 @@ class Tirada(models.Model):
                             k=6
                         )
         self.result = tirada
-        # es mutable?
-        mutables = []
-        h1 = []
-        h2 = []
-
-        for index, value in enumerate(tirada, start=1):
-            if value == 3:
-                mutables.append(index)
-                h1.append(1)
-                h2.append(2)
-            elif value == 4:
-                mutables.append(index)
-                h1.append(2)
-                h2.append(1)
-            else:
-                h1.append(value)
-                h2.append(value)
-        
+      
 
         
-        if h1 != h2:
+        if 3 in tirada or 4 in tirada:
             self.mutable = True
 
             
@@ -77,6 +60,21 @@ class Tirada(models.Model):
                 return h1
         except:
             return "no lo tenemos"
+    
+    @property
+    def lineas_mutables(self):
+        tirada = self.result
+        
+        mutables = []
+
+        for index, value in enumerate(tirada, start=1):
+            if value == 3:
+                mutables.append(index)
+            elif value == 4:
+                mutables.append(index)
+        return mutables
+        
+            
             
 class Hexagrama(models.Model):
     numero=models.IntegerField(unique=True)
