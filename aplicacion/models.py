@@ -60,7 +60,32 @@ class Tirada(models.Model):
                 return h1
         except:
             return "no lo tenemos"
-    
+        
+        
+    @property
+    def h2(self):
+        if self.mutable == True:
+            tirada = self.result
+            
+            h2 = []
+
+            for index, value in enumerate(tirada, start=1):
+                if value == 3:
+                    h2.append(2)
+                elif value == 4:
+                    h2.append(1)
+                else:
+                    h2.append(value)
+                    
+            try:
+                h2 = Hexagrama.objects.get(lineas=h2)
+                if h2:
+                    return h2
+            except:
+                return "no lo tenemos"
+        else:
+            return self.h1
+        
     @property
     def lineas_mutables(self):
         tirada = self.result

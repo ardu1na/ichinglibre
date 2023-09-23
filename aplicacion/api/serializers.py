@@ -4,6 +4,8 @@ from aplicacion.models import Hexagrama, Tirada
         
 class TiradaSerializer(serializers.ModelSerializer):
     h1 = serializers.SerializerMethodField()
+    h2 = serializers.SerializerMethodField()
+
     mutables = serializers.SerializerMethodField()
     class Meta:
         model= Tirada
@@ -11,7 +13,7 @@ class TiradaSerializer(serializers.ModelSerializer):
             'result',
             'h1',
             'mutables',
-            
+            'h2',
             
         ]
     
@@ -52,6 +54,19 @@ class TiradaSerializer(serializers.ModelSerializer):
             'texto': obj.h1.texto,
         }
         return h1
+    
+    def get_h2(self, obj):
+        if obj.mutable == True:
+            h2 = {
+                'nombre' : obj.h2.nombre,
+                'numero': obj.h2.numero,
+                'simbolo': obj.h2.simbolo,
+                'lineas': obj.h2.lineas,
+                'texto': obj.h2.texto,
+            }
+            return h2
+        else:
+            return None
     
     
 class HexagramaSerializer(serializers.ModelSerializer):
