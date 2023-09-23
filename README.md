@@ -33,3 +33,5 @@
 # open browser in http://127.0.0.1:8000/
 
 # import export data with django-import-export
+
+# TODO: add celery or cronjobs to remove tirada instances after certain amount of time

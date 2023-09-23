@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from aplicacion.models import Hexagrama, Tirada
+from django.core.exceptions import ObjectDoesNotExist
 
         
 class TiradaSerializer(serializers.ModelSerializer):
@@ -44,8 +45,14 @@ class TiradaSerializer(serializers.ModelSerializer):
             }
         return mutable
         
-        
+
+
+
     def get_h1(self, obj):
+        try:
+            articulo_texto = obj.h1.articulo.texto
+        except ObjectDoesNotExist:
+            articulo_texto = None
         h1 = {
             'nombre' : obj.h1.nombre,
             'numero': obj.h1.numero,

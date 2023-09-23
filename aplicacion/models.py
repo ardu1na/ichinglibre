@@ -119,6 +119,10 @@ class Hexagrama(models.Model):
     def __str__(self):
         return '{} - {}'.format(self.numero, self.nombre)
 
+   
+    
+    
+    
 class Tag(models.Model):
     nombre=models.CharField(max_length=150, null=False, blank= False)
     def __str__(self):
@@ -158,3 +162,5 @@ class Articulo(models.Model):
     class Meta:
         get_latest_by = "fecha"
         ordering = ["fecha",]
+
+    
