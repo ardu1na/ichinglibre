@@ -1,12 +1,85 @@
 from datetime import date
-
+import random
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django.contrib.auth.models import User
 
+class Tirada(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, related_name="tiradas", on_delete=models.CASCADE, null=True, blank=True)
+    
+    result = models.JSONField(null=True, blank=True)
+    
+    especial = models.BooleanField(default=False)
+    mutable = models.BooleanField(default=False)
+    
+    def __str__ (self):
+        return f'{self.date.hour}:{self.date.minute} {self.date.day}/{self.date.month} consulta' 
+    
+    
+    
+    
+        
+    
+    def save(self, *args, **kwargs):
+        posibilidades = (1,2,3,4)
+        tirada = random.choices(
+                            posibilidades,
+                            weights=(3,3,1,1),
+                            k=6
+                        )
+        self.result = tirada
+        # es mutable?
+        mutables = []
+        h1 = []
+        h2 = []
 
+        for index, value in enumerate(tirada, start=1):
+            if value == 3:
+                mutables.append(index)
+                h1.append(1)
+                h2.append(2)
+            elif value == 4:
+                mutables.append(index)
+                h1.append(2)
+                h2.append(1)
+            else:
+                h1.append(value)
+                h2.append(value)
+        
+
+        
+        if h1 != h2:
+            self.mutable = True
+
+            
+            
+        super().save(*args, **kwargs) 
+        
+    @property
+    def h1(self):
+        tirada = self.result
+        
+        h1 = []
+
+        for index, value in enumerate(tirada, start=1):
+            if value == 3:
+                h1.append(1)
+            elif value == 4:
+                h1.append(2)
+            else:
+                h1.append(value)
+                
+        try:
+            h1 = Hexagrama.objects.get(lineas=h1)
+            if h1:
+                return h1
+        except:
+            return "no lo tenemos"
+            
 class Hexagrama(models.Model):
-    numero=models.IntegerField(primary_key=True)
+    numero=models.IntegerField(unique=True)
     nombre=models.CharField(max_length=50, null=False, blank= False)
     lineas=models.JSONField(null=False, blank=False, unique=True)
     texto=models.TextField(max_length=500, null=True, blank=True)

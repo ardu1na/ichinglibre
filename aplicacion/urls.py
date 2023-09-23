@@ -1,5 +1,9 @@
 from django.urls import path
 from . import views
+from aplicacion.api.views import TiradaAPIView
+
+
+
 urlpatterns = [
     path('sitemap.xml', views.sitemap, name='django.contrib.sitemaps.views.sitemap'),
 
@@ -11,6 +15,7 @@ urlpatterns = [
     path('recursos/', views.form, name='form'),
     path('hexagrama/', views.hexagrama, name='hexagrama'), 
     path('articulos/', views.blog, name='blog'),
-    path('<slug:slug>/', views.articulo_detail, name='articulo_detail'),
+    path('articulos/<slug:slug>/', views.articulo_detail, name='articulo_detail'),
+    path('api/', TiradaAPIView.as_view())
 ]
 

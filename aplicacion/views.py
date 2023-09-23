@@ -15,10 +15,23 @@ from django.core.paginator import Paginator
 from django.contrib.sitemaps import views as sitemap_views
 from aplicacion.sitemaps import HexagramaSitemap, ArticuloSitemap
 
+
+
+
+"""
+TODO:
+
+FIX HTML TEMPLATE REDIRECT TO HEXAGRAM ARTICLE http://127.0.0.1:8000/hexagrama-20-la-contemplacion/%20%20target=
+
+"""
+
+
+
 sitemaps = {
     'hexagramas': HexagramaSitemap,
     'articulos': ArticuloSitemap,
 }
+
 
 def sitemap(request, **kwargs):
     return sitemap_views.sitemap(request, sitemaps, **kwargs)
@@ -160,8 +173,12 @@ def tirada(request):
         hexa2 = Hexagrama.objects.get(lineas=h2)
 
         # ver si es primario y mutan todas
-        if hexa1.numero == 1 or hexa1.numero == 2 and len(mutables) == 6:
+        if hexa1.numero == 1 and hexa2.numero == 2:
+            
             es_especial = True
+        elif hexa1.numero == 2 and hexa2.numero == 1:
+            es_especial = True
+
         else:
             es_especial = False
 
