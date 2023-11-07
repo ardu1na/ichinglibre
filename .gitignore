@@ -6,3 +6,4 @@ iching/settings.py
 db.sqlite3
 migrations/
 static/
+env/

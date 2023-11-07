@@ -41,7 +41,7 @@ class TiradaSerializer(serializers.ModelSerializer):
                   
             mutable = {
                 'es_mutable': obj.mutable,
-                'mutables': lineas,
+                'lineas': lineas,
             }
         return mutable
         
@@ -49,10 +49,6 @@ class TiradaSerializer(serializers.ModelSerializer):
 
 
     def get_h1(self, obj):
-        try:
-            articulo_texto = obj.h1.articulo.texto
-        except ObjectDoesNotExist:
-            articulo_texto = None
         h1 = {
             'nombre' : obj.h1.nombre,
             'numero': obj.h1.numero,
